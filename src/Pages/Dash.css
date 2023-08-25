@@ -1,6 +1,7 @@
 .customScroll {
     background: #F5F5F5;
-    overflow-y: scroll;
+    overflow-y: hidden;
+    overflow-x: scroll;
 }
 
 .style-7::-webkit-scrollbar-track {
