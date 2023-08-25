@@ -29,7 +29,7 @@ const handleAttach = (id) =>{
     // }
     
 
-    axios.patch(`http://localhost:5000/clients/${id}`,attachments, {
+    axios.patch(`https://seo-page-dashboard-server.vercel.app/clients/${id}`,attachments, {
       headers: {
         'Content-Type': 'application/json',
       },
