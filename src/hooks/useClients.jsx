@@ -5,7 +5,7 @@ const useClients = () => {
     const {data: allClients =[] , refetch} = useQuery({
         queryKey:['allClients'],
         queryFn: async()=>{
-            const res = await axios.get("http://localhost:5000/all-clients");
+            const res = await axios.get("https://seo-page-dashboard-server.vercel.app/all-clients");
             return res.data;
         }
     })

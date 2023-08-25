@@ -5,6 +5,9 @@ import men from "../../assets/man.png";
 import women from "../../assets/woman.png";
 import useClients from '../../hooks/useClients';
 import "./Input.css"
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
 
 const SingleClient = ({singleClient}) => {
 
@@ -15,10 +18,34 @@ const SingleClient = ({singleClient}) => {
 
     const handleAttachment = (event) => {
         const newAttachments = Array.from(event.target.files);
+        console.log(newAttachments);
         setAttachments(newAttachments);
       };
 const handleAttach = (id) =>{
-    console.log(id);
+
+    const attachments = clientAttachments.map(attachment => attachment.name);
+    // const newData = {
+    //     attachments: clientAttachments.map(attachment => attachment.name)
+    // }
+    
+
+    axios.patch(`https://seo-page-dashboard-server.vercel.app/clients/${id}`,attachments)
+    .then((response) => {
+        // Handle response
+        if(response.data.modifiedCount){
+            Swal.fire({
+                title: 'Success!',
+                text: 'Attachment uploaded Successfully!',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+              })
+        }
+        refetch()
+      })
+      .catch((error) => {
+        // Handle error
+        console.error(error);
+      });
 }
 
 
@@ -76,9 +103,14 @@ const handleAttach = (id) =>{
           </div>
           
           <div>
-          {clientAttachments.length > 0 ? clientAttachments.map((attachment, index) => (
-            <div key={index} className='my-2 font-medium'>{attachment.name}</div>
-          )) : <span className='my-7'>Select Your Attachment</span>}
+          {clientAttachments.length > 0 ? <ul className='list-disc'>
+            <p className='font-medium'>Selected Files Are:</p>
+            {
+                clientAttachments.map((attachment, index) => (
+                    <li key={index} className='my-2 font-medium'>{attachment.name}</li>
+                  ))
+            }
+          </ul> : <span>Select Your Attachment</span>}
           </div>
 
 
