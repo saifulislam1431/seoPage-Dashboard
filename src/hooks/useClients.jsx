@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React from 'react';
 
 const useClients = () => {
     const {data: allClients =[] , refetch} = useQuery({

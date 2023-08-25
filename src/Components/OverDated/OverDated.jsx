@@ -1,10 +1,11 @@
 import React from 'react';
-
+import CardTitleCompo from '../CardTitleCompo/CardTitleCompo';
+import logo from "../../assets/deadline.png"
 const OverDated = () => {
     return (
-        <div>
-             Over Dated
-        </div>
+        <section className='bg-slate-200 rounded-md p-3 h-[800px] w-80'>
+        <CardTitleCompo logo={logo} title="Over Dated"/>
+                </section>
     );
 };
 
